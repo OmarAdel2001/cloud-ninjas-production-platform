@@ -1,0 +1,114 @@
+# ⚔️ Cloud-Ninjas – Full DevOps Microservices Platform
+
+A production-grade DevOps project implementing a complete microservices architecture using **Python, Docker, Docker Compose .
+This project demonstrates how to design, build, test, containerize, orchestrate, and monitor a modern cloud-native application.
+
+---
+
+## 🚀 Project Overview
+
+Cloud-Ninjas is a full-stack microservices platform consisting of:
+
+| Service          | Technology                                        |
+| ---------------- | ------------------------------------------------- |
+| Frontend         | Python (Streamlit)                                |
+| Backend          | Python (FastAPI)                                  |
+| Database Service | Python (FastAPI + SQLAlchemy)                     |
+| Database         | MySQL 8                                           |
+| Cache            | Redis                                             |
+
+---
+
+## 🏗 Architecture
+
+```
+Client → Frontend (Streamlit)
+           ↓
+        Backend (FastAPI)
+           ↓
+    Database Service (FastAPI)
+           ↓
+     MySQL 8  ←→  Redis
+```
+
+All services run as isolated containers connected via a private Docker network .
+---
+
+## 📁 Repository Structure
+
+```
+docker/
+ ├── frontend/
+ ├── backend/
+ ├── database/
+ ├── docker-compose.yml
+ └── README.md
+```
+
+---
+
+## 🛠 Prerequisites
+
+* Docker 24+
+* Docker Compose v2+
+* Python 3.11+
+---
+
+## ▶ Run with Docker Compose
+
+```bash
+docker compose up -d
+```
+To enter to the database
+docker exec -it mysql mysql -uroot -proot123 cloudninjas
+
+To list all items 
+mysql> SELECT * FROM items;
++----+--------+-------+
+| id | name   | price |
++----+--------+-------+
+|  1 | labtop |  5000 |
++----+--------+-------+
+1 row in set (0.00 sec)
+
+---
+
+## 🧪 Validate Services
+
+```bash
+curl http://localhost:9000/health     # Database service
+curl http://localhost:8000/health     # Backend API
+```
+
+Open frontend:
+
+```
+http://localhost:8501
+```
+
+---
+
+## 🧪 Sample API Test
+
+```bash
+curl -X POST http://localhost:8000/items \
+ -H "Content-Type: application/json" \
+ -d '{"name":"Laptop","price":6000}'
+```
+
+```bash
+curl http://localhost:8000/items
+```
+
+---
+## 🔄 Stop Stack
+
+```bash
+docker compose down
+
+---
+
+👨‍💻 Author
+
+Omar Adel Mahmoud Abdel-Tawab Metwally
+DevOps Engineer | Cloud | Kubernetes | CI/CD
